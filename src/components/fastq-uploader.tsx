@@ -27,12 +27,18 @@ export const FastqUploader = forwardRef<FileUploadHandle, Props>(
                 const errors = validateFastqFile(file, details.acceptedFiles);
                 return errors.length ? errors : null;
             },
-            onFileAccept: (details: FileAcceptDetails) => setAcceptedFiles(details.files),
-            onFileReject: (details: FileRejectDetails) => setRejectedFiles(details.files)
+            onFileAccept: (details: FileAcceptDetails) => {
+                setAcceptedFiles(details.files);
+            },
+            onFileReject: (details: FileRejectDetails) => {
+                setRejectedFiles(details.files);
+            }
         });
 
         useImperativeHandle(ref, () => ({
-            clearFiles: () => fileUpload.clearFiles(),
+            clearFiles: () => {
+                fileUpload.clearFiles();
+            },
         }));
 
         return (
