@@ -9,7 +9,6 @@ function App() {
             <ColorModeButton/>
             <FastqUploader
                 showUpload={true}
-                files={[]}
                 setAcceptedFiles={() => {
                     // TODO: implement
                 }}
