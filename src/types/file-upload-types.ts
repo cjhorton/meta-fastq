@@ -1,3 +1,7 @@
 export type {
-    FileError
+    FileError,
+    FileRejection,
+    FileValidateDetails,
+    FileAcceptDetails,
+    FileRejectDetails
 } from "@zag-js/file-upload"
