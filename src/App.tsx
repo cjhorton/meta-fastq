@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Code, Show, Stack } from "@chakra-ui/react";
 import { ColorModeButton } from "@/components/ui/color-mode";
-import { FastqUploader } from "@/components/fastq-uploader.tsx";
+import { FastqUploader, type FastqUploaderHandle } from "@/components/fastq-uploader.tsx";
 import type { FileRejection } from "@/types/file-upload-types";
 import { RejectedList } from "@/components/rejected-list.tsx";
 import { ActionBar } from "@/components/action-bar.tsx";
@@ -13,6 +13,8 @@ function App() {
     const [rejectedFiles, setRejectedFiles] = useState<FileRejection[]>([]);
     const [acceptedFiles, setAcceptedFiles] = useState<File[]>([]);
     const [enabledActions, setEnabledActions] = useState<EnabledActions>(getEnabledActions('Idle'));
+
+    const fastqUploadRef = useRef<FastqUploaderHandle>(null);
 
     const handleFileAccept = (files: File[]) => {
         if (status !== 'Running') {
@@ -35,8 +37,7 @@ function App() {
     };
 
     const handleClearAction = () => {
-        //TODO: clear files
-        console.log('clear files');
+        fastqUploadRef.current?.clearFiles();
     };
 
     const handleResetAction = () => {
@@ -87,6 +88,7 @@ function App() {
             </Show>
             <ActionBar enabledActions={enabledActions} onActionSelected={handleUserAction}></ActionBar>
             <FastqUploader
+                ref={fastqUploadRef}
                 showUpload={true}
                 setAcceptedFiles={handleFileAccept}
                 setRejectedFiles={handleFileReject}>
