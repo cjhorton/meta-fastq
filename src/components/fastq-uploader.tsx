@@ -9,7 +9,7 @@ import type {
 } from "@/types/file-upload-types";
 import { validateFastqFile } from "@/utils/fastq-validator";
 
-export interface FileUploadHandle {
+export interface FastqUploaderHandle {
     clearFiles: () => void;
 }
 
@@ -19,7 +19,7 @@ interface Props {
     setRejectedFiles: (files: FileRejection[]) => void;
 }
 
-export const FastqUploader = forwardRef<FileUploadHandle, Props>(
+export const FastqUploader = forwardRef<FastqUploaderHandle, Props>(
     ({showUpload, setAcceptedFiles, setRejectedFiles}, ref) => {
         const fileUpload = useFileUpload({
             maxFiles: 96,
