@@ -17,7 +17,7 @@ function App() {
     const fastqUploadRef = useRef<FastqUploaderHandle>(null);
 
     const handleFileAccept = (files: File[]) => {
-        if (status !== 'Running') {
+        if (status === 'Idle' || status === 'Pending') {
             if (files.length === 0) {
                 updateStatus('Idle');
                 setRejectedFiles([]);
@@ -38,11 +38,13 @@ function App() {
 
     const handleClearAction = () => {
         fastqUploadRef.current?.clearFiles();
+        setAcceptedFiles([]);
+        setRejectedFiles([]);
     };
 
     const handleResetAction = () => {
-        //TODO: reset app
-        console.log('reset app');
+        handleClearAction();
+        updateStatus('Idle');
     };
 
     const handleSaveAction = () => {
