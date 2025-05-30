@@ -15,7 +15,15 @@ function App() {
     const [enabledActions, setEnabledActions] = useState<EnabledActions>(getEnabledActions('Idle'));
 
     const handleFileAccept = (files: File[]) => {
-        setAcceptedFiles(files);
+        if (status !== 'Running') {
+            if (files.length === 0) {
+                updateStatus('Idle');
+                setRejectedFiles([]);
+            } else {
+                updateStatus('Pending');
+            }
+            setAcceptedFiles(files);
+        }
     };
 
     const handleFileReject = (files: FileRejection[]) => {
