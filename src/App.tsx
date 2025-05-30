@@ -7,11 +7,13 @@ import { RejectedList } from "@/components/rejected-list.tsx";
 import { ActionBar } from "@/components/action-bar.tsx";
 import { type Action, type EnabledActions, getEnabledActions } from "@/types/action.ts";
 import type { Status as AppStatus } from "@/types/status.ts";
+import { FastqProcessor } from "@/components/fastq-processor.tsx";
 
 function App() {
     const [status, setStatus] = useState<AppStatus>('Idle')
     const [rejectedFiles, setRejectedFiles] = useState<FileRejection[]>([]);
     const [acceptedFiles, setAcceptedFiles] = useState<File[]>([]);
+    const [filesToProcess, setFilesToProcess] = useState<File[]>([]);
     const [enabledActions, setEnabledActions] = useState<EnabledActions>(getEnabledActions('Idle'));
 
     const fastqUploadRef = useRef<FastqUploaderHandle>(null);
@@ -33,7 +35,11 @@ function App() {
     };
 
     const handleRunAction = () => {
-        updateStatus('Running');
+        if (status === 'Pending') {
+            updateStatus('Running');
+            setFilesToProcess([...acceptedFiles]);
+            handleClearAction();
+        }
     };
 
     const handleClearAction = () => {
@@ -81,6 +87,11 @@ function App() {
         setEnabledActions(enabledActions);
     };
 
+    const handleProcessingComplete = () => {
+        setFilesToProcess([]);
+        updateStatus('Complete');
+    };
+
     return (
         <Stack align="flex-start" w="full">
             <ColorModeButton/>
@@ -95,6 +106,7 @@ function App() {
                 setAcceptedFiles={handleFileAccept}
                 setRejectedFiles={handleFileReject}>
             </FastqUploader>
+            <FastqProcessor files={filesToProcess} onProcessingComplete={handleProcessingComplete}/>
         </Stack>
     )
 }

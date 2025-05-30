@@ -7,13 +7,14 @@ interface Props {
 
 export const FastqProcessor = ({files, onProcessingComplete}: Props) => {
     useEffect(() => {
-        console.log('files changed in FastqProcessor - ', files)
-        if (files.length > 0) {
-            console.log('processing files - ', files)
-            setTimeout(() => {
-                console.log('processing complete')
-                onProcessingComplete();
-            }, 2000);
+        if (files.length === 0) return;
+
+        const timer = setTimeout(() => {
+            onProcessingComplete();
+        }, 2000);
+
+        return () => {
+            clearTimeout(timer);
         }
     }, [files, onProcessingComplete]);
 
