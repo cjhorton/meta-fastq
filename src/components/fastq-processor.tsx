@@ -11,7 +11,10 @@ export const FastqProcessor = ({files, onProcessingUpdate}: Props) => {
     const [status, setStatus] = useState<FastqProcessingStatus>('initial')
 
     useEffect(() => {
-        if (files.length === 0) return;
+        if (files.length === 0) {
+            setStatus('initial');
+            return;
+        }
 
         if (status === 'initial') {
             const results: FastqResult[] = files.map(f => ({file: f, status: 'Pending'}));
