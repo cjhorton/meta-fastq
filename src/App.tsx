@@ -8,6 +8,8 @@ import { ActionBar } from "@/components/action-bar.tsx";
 import { type Action, type EnabledActions, getEnabledActions } from "@/types/action.ts";
 import type { Status as AppStatus } from "@/types/status.ts";
 import { FastqProcessor } from "@/components/fastq-processor.tsx";
+import type { FastqProcessingUpdate } from "@/types/fastq-processing-update.ts";
+import { FastqResultsTable } from "@/components/fastq-results-table.tsx";
 
 function App() {
     const [status, setStatus] = useState<AppStatus>('Idle')
@@ -15,6 +17,7 @@ function App() {
     const [acceptedFiles, setAcceptedFiles] = useState<File[]>([]);
     const [filesToProcess, setFilesToProcess] = useState<File[]>([]);
     const [enabledActions, setEnabledActions] = useState<EnabledActions>(getEnabledActions('Idle'));
+    const [processingUpdate, setProcessingUpdate] = useState<FastqProcessingUpdate>({results: [], status: 'initial'});
 
     const fastqUploadRef = useRef<FastqUploaderHandle>(null);
 
@@ -87,10 +90,9 @@ function App() {
         setEnabledActions(enabledActions);
     };
 
-    const handleProcessingComplete = () => {
-        setFilesToProcess([]);
-        updateStatus('Complete');
-    };
+    const handleProcessingUpdate = (update: FastqProcessingUpdate) => {
+        setProcessingUpdate(update);
+    }
 
     return (
         <Stack align="flex-start" w="full">
@@ -102,11 +104,14 @@ function App() {
             <ActionBar enabledActions={enabledActions} onActionSelected={handleUserAction}></ActionBar>
             <FastqUploader
                 ref={fastqUploadRef}
-                showUpload={true}
+                showUpload={status === 'Idle' || status === 'Pending'}
                 setAcceptedFiles={handleFileAccept}
                 setRejectedFiles={handleFileReject}>
             </FastqUploader>
-            <FastqProcessor files={filesToProcess} onProcessingComplete={handleProcessingComplete}/>
+            <FastqProcessor files={filesToProcess} onProcessingUpdate={handleProcessingUpdate}/>
+            <Show when={processingUpdate.results.length > 0}>
+                <FastqResultsTable results={processingUpdate.results}/>
+            </Show>
         </Stack>
     )
 }

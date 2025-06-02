@@ -1,6 +1,8 @@
 import type { FastqResult } from "@/types/fastq-result.ts";
 
+export type FastqProcessingStatus = 'initial' | 'processing' | 'complete' | 'error';
+
 export interface FastqProcessingUpdate {
-    status: 'processing' | 'complete' | 'error';
+    status: FastqProcessingStatus;
     results: FastqResult[];
 }
