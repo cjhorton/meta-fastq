@@ -53,6 +53,8 @@ function App() {
 
     const handleResetAction = () => {
         handleClearAction();
+        setFilesToProcess([]);
+        setProcessingUpdate({results: [], status: 'initial'});
         updateStatus('Idle');
     };
 
