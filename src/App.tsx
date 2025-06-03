@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { Code, Show, Stack } from "@chakra-ui/react";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import { FastqUploader, type FastqUploaderHandle } from "@/components/fastq-uploader.tsx";
@@ -92,9 +92,9 @@ function App() {
         setEnabledActions(enabledActions);
     };
 
-    const handleProcessingUpdate = (update: FastqProcessingUpdate) => {
+    const handleProcessingUpdate = useCallback((update: FastqProcessingUpdate) => {
         setProcessingUpdate(update);
-    }
+    }, []);
 
     return (
         <Stack align="flex-start" w="full">
