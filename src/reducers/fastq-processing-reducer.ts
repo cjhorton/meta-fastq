@@ -3,7 +3,7 @@ import type { FastqResult } from "@/types/fastq-result.ts";
 export type Action =
     | { type: 'initialize'; files: File[] }
     | { type: 'setResult'; result: FastqResult }
-    | { type: 'setError'; fileName: string };
+    | { type: 'setError'; fileName: string, error: string };
 
 export function fastqProcessingReducer(state: FastqResult[], action: Action): FastqResult[] {
     switch (action.type) {
