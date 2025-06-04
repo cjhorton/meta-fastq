@@ -1,3 +1,5 @@
+import type { PlatformType } from "@/types/platform.ts";
+
 export const ProcessingStatusValues = {
     Pending: 'Pending',
     Done: 'Done',
@@ -9,4 +11,5 @@ export type ProcessingStatus = typeof ProcessingStatusValues[keyof typeof Proces
 export interface FastqResult {
     file: File;
     status: ProcessingStatus;
+    platform?: PlatformType;
 }
