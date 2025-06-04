@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { FASTQ_DUPLICATE, FASTQ_INVALID_EXT, validateFastqFile } from './fastq-validator';
+import { FASTQ_DUPLICATE, FASTQ_INVALID_EXT, validateFastqFile } from './file-upload-validator';
 
 function mockFile(name: string): File {
     return new File(["@SEQ\nAGCT\n+\n!!!!"], name);

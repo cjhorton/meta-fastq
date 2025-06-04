@@ -7,7 +7,7 @@ import type {
     FileValidateDetails,
     FileAcceptDetails
 } from "@/types/file-upload-types";
-import { validateFastqFile } from "@/utils/fastq-validator";
+import { validateFastqFile } from "@/utils/file-upload-validator";
 
 export interface FastqUploaderHandle {
     clearFiles: () => void;
