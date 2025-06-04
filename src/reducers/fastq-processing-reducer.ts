@@ -8,7 +8,7 @@ export type Action =
 export function fastqProcessingReducer(state: FastqResult[], action: Action): FastqResult[] {
     switch (action.type) {
         case 'initialize':
-            return action.files.map(f => ({file: f, status: 'Pending'}));
+            return action.files.map(f => ({file: f, status: 'Pending', platform: 'Unknown'}));
         case 'setResult':
             return state.map(r => r.file.name === action.result.file.name ? action.result : r);
         case 'setError':
