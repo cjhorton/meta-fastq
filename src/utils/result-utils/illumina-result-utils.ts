@@ -18,8 +18,11 @@ export const createIlluminaResult = (file: File, firstRead: FastqRead): FastqRes
         file,
         status: 'Done',
         platform: 'Illumina',
+        instrumentId: header.instrument,
+        flowcellId: header.flowcellId,
         runNumber: header.runNumber,
         cycles: firstRead[BASES_LINE].length,
-        indexes: header.index
+        indexes: header.index,
+        readNumber: header.read
     };
 }
