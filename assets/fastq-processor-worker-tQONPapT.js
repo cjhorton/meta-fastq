@@ -1,1 +1,0 @@
-(function(){"use strict";function t(e){return new Promise(s=>setTimeout(s,e))}self.onmessage=async e=>{const s=e.data.file;await t(1e3);const a=n(s),o=u(a);self.postMessage(o)};function n(e){return{file:e,status:"Done"}}function u(e){return{type:"result",result:e}}})();
