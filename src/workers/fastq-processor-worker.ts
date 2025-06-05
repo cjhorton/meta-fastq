@@ -1,12 +1,12 @@
 import type { FastqResult } from "@/types/fastq-result.ts";
 import type { MessageFromWorker, MessageToWorker, ResultMessage } from "@/types/fastq-worker-messages.ts";
 import { isGzipFile } from "../utils/file-utils.ts";
-import { streamGunzip, streamPlainText } from "@/utils/file-streamers.ts";
+import { streamGunzip, streamPlainText } from "../utils/file-streamers.ts";
 import { type FastqRead, HEADER_LINE } from "@/types/fastq-types.ts";
-import { isValidFastqRead } from "@/utils/fastq-validator.ts";
-import { determinePlatform } from "@/utils/header-utils/fastq-platform-utils.ts";
-import { createIlluminaResult } from "@/utils/result-utils/illumina-result-utils.ts";
-import { createUnknownResult } from "@/utils/result-utils/unknown-result.ts";
+import { isValidFastqRead } from "../utils/fastq-validator.ts";
+import { determinePlatform } from "../utils/header-utils/fastq-platform-utils.ts";
+import { createIlluminaResult } from "../utils/result-utils/illumina-result-utils.ts";
+import { createUnknownResult } from "../utils/result-utils/unknown-result.ts";
 
 self.onmessage = async (e: MessageEvent<MessageToWorker>) => {
     const {file} = e.data;
