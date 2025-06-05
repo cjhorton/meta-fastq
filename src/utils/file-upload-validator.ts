@@ -1,4 +1,4 @@
-import { areSameFileQuick, isFastqFileQuick } from "@/utils/file-utils";
+import { areSameFileQuick, isFastqFileQuick } from "../utils/file-utils";
 import type { FileError } from "@/types/file-upload-types";
 
 export const FASTQ_INVALID_EXT = "Not Fastq";
