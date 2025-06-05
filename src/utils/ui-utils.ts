@@ -1,3 +1,2 @@
-import * as React from "react";
-
-export const valueOrDash = (value: string | number | null | undefined): React.ReactNode => value ?? '-';
+export const valueOrDefault = (
+    value: string | number | null | undefined, defaultValue = '-'): string => String(value ?? defaultValue);
