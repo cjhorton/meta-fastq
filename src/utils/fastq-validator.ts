@@ -1,4 +1,4 @@
-import { BASES_LINE, type FastqRead, HEADER_LINE, PLUS_LINE, QUALITY_LINE } from "@/types/fastq-types.ts";
+import { BASES_LINE, type FastqRead, HEADER_LINE, PLUS_LINE, QUALITY_LINE } from "../types/fastq-types.ts";
 
 const FASTQ_BASES_REGEX = /^[ACGTN]+$/i;
 const FASTQ_QUALITY_REGEX = /^[\x21-\x7E]+$/;
