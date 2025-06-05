@@ -1,6 +1,6 @@
 import type { FastqResult } from "@/types/fastq-result.ts";
 import type { MessageFromWorker, MessageToWorker, ResultMessage } from "@/types/fastq-worker-messages.ts";
-import { isGzipFile } from "@/utils/file-utils.ts";
+import { isGzipFile } from "../utils/file-utils.ts";
 import { streamGunzip, streamPlainText } from "@/utils/file-streamers.ts";
 import { type FastqRead, HEADER_LINE } from "@/types/fastq-types.ts";
 import { isValidFastqRead } from "@/utils/fastq-validator.ts";
