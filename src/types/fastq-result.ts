@@ -11,5 +11,5 @@ export type ProcessingStatus = typeof ProcessingStatusValues[keyof typeof Proces
 export interface FastqResult {
     file: File;
     status: ProcessingStatus;
-    platform?: PlatformType;
+    platform: PlatformType;
 }
