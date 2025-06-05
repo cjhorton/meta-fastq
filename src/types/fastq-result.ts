@@ -12,8 +12,11 @@ export interface FastqResult {
     file: File;
     status: ProcessingStatus;
     platform: PlatformType;
+    instrumentId?: string,
+    flowcellId?: string,
     error?: string;
     runNumber?: number,
     cycles?: number,
     indexes?: string
+    readNumber?: number
 }
