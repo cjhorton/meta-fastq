@@ -20,5 +20,6 @@ export const createIlluminaResult = (file: File, firstRead: FastqRead): FastqRes
         platform: 'Illumina',
         runNumber: header.runNumber,
         cycles: firstRead[BASES_LINE].length,
+        indexes: header.index
     };
 }

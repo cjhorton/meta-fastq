@@ -15,4 +15,5 @@ export interface FastqResult {
     error?: string;
     runNumber?: number,
     cycles?: number,
+    indexes?: string
 }
