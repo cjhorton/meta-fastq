@@ -1,9 +1,9 @@
-import { type FlowCellType, UnknownFlowCellValues } from "@/types/flow-cells.ts";
+import { type FlowCellType, UnknownFlowCellValues } from "../types/flow-cells.ts";
 import {
     type FlowCellIdMapping,
     IlluminaFlowCellIdMappings,
     NanoporeFlowCellIdMappings
-} from "@/types/flow-cell-id-mappings.ts";
+} from "../types/flow-cell-id-mappings.ts";
 
 export function determineIlluminaFlowCell(flowCellId: string): FlowCellType {
     return determineFlowCell(flowCellId, IlluminaFlowCellIdMappings);
