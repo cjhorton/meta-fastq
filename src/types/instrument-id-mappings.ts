@@ -5,7 +5,7 @@ import {
     type NanoporeInstrumentType, NanoporeInstrumentValues, type UnknownInstrumentType, UnknownInstrumentValues
 } from "./instruments.ts";
 
-export type InstrumentIdMapping<T extends string = InstrumentType> = {
+export interface InstrumentIdMapping<T extends string = InstrumentType> {
     pattern: RegExp;
     instruments: T[];
 }
