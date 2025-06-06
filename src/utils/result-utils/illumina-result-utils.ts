@@ -1,7 +1,7 @@
 import { BASES_LINE, type FastqRead, HEADER_LINE } from "../../types/fastq-types.ts";
 import { parseIlluminaHeader } from "../../utils/header-utils/illumina-header-utils.ts";
 import type { FastqResult } from "@/types/fastq-result.ts";
-import { determineIlluminaInstrument } from "@/utils/instrument-detectors.ts";
+import { determineIlluminaInstrument } from "../instrument-detectors.ts";
 
 export const createIlluminaResult = (file: File, firstRead: FastqRead): FastqResult => {
     const header = parseIlluminaHeader(firstRead[HEADER_LINE]);
