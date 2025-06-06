@@ -1,7 +1,7 @@
 import { Table } from "@chakra-ui/react"
 import type { FastqResult } from "@/types/fastq-result.ts";
 import { formatFileSize } from "@/utils/file-utils.ts";
-import { valueOrDefault } from "@/utils/ui-utils.ts";
+import { arrayOrDefault, valueOrDefault } from "@/utils/ui-utils.ts";
 
 export const FastqResultsTable = ({results}: { results: FastqResult[] }) => {
     return (
@@ -14,6 +14,7 @@ export const FastqResultsTable = ({results}: { results: FastqResult[] }) => {
                     <Table.ColumnHeader>Size (Disk)</Table.ColumnHeader>
                     <Table.ColumnHeader>Platform</Table.ColumnHeader>
                     <Table.ColumnHeader>Instrument Id</Table.ColumnHeader>
+                    <Table.ColumnHeader>Instrument Type</Table.ColumnHeader>
                     <Table.ColumnHeader>Flow Cell Id</Table.ColumnHeader>
                     <Table.ColumnHeader>Read</Table.ColumnHeader>
                     <Table.ColumnHeader>Cycles</Table.ColumnHeader>
@@ -22,7 +23,7 @@ export const FastqResultsTable = ({results}: { results: FastqResult[] }) => {
             </Table.Header>
             <Table.Body>
                 {results.map((result) => {
-                    const {file, status, error, platform, instrumentId, flowcellId, readNumber,cycles, indexes} = result;
+                    const {file, status, error, platform, instrumentId, instrumentTypes, flowcellId, readNumber,cycles, indexes} = result;
                     return (
                         <Table.Row key={file.name}>
                             <Table.Cell>{file.name}</Table.Cell>
@@ -31,6 +32,7 @@ export const FastqResultsTable = ({results}: { results: FastqResult[] }) => {
                             <Table.Cell>{formatFileSize(file.size)}</Table.Cell>
                             <Table.Cell>{valueOrDefault(platform)}</Table.Cell>
                             <Table.Cell>{valueOrDefault(instrumentId)}</Table.Cell>
+                            <Table.Cell>{arrayOrDefault(instrumentTypes)}</Table.Cell>
                             <Table.Cell>{valueOrDefault(flowcellId)}</Table.Cell>
                             <Table.Cell>{valueOrDefault(readNumber)}</Table.Cell>
                             <Table.Cell>{valueOrDefault(cycles)}</Table.Cell>
