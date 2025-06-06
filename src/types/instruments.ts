@@ -1,6 +1,7 @@
 export const NanoporeInstrumentValues = {
-    minION: "MinION",
-    promethION: "PromethION",
+    minIon: "MinION",
+    gridIon: "GridION",
+    promethIon: "PromethION",
     unknownNanopore: "Unknown",
 } as const;
 
