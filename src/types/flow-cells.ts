@@ -23,9 +23,10 @@ export const IlluminaFlowCellValues = {
 } as const;
 
 export const NanoporeFlowCellValues = {
-    minIon: "MinIon",
+    mk1d: "Mk1D",
     promethIon: "PromethIon",
     flongle: "Flongle",
+    unknown: "Unknown",
 } as const;
 
 export const UnknownFlowCellValues = {
