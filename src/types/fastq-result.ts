@@ -1,5 +1,6 @@
 import type { PlatformType } from "@/types/platform.ts";
 import type { InstrumentType } from "@/types/instruments.ts";
+import type { FlowCellType } from "@/types/flow-cells.ts";
 
 export const ProcessingStatusValues = {
     Pending: 'Pending',
@@ -16,6 +17,7 @@ export interface FastqResult {
     instrumentId?: string,
     instrumentTypes?: InstrumentType[],
     flowcellId?: string,
+    flowCellType?: FlowCellType,
     error?: string;
     runNumber?: number,
     cycles?: number,
