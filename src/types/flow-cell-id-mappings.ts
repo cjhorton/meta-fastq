@@ -11,11 +11,11 @@ import {
     type NanoporeFlowCellType, NanoporeFlowCellValues, type UnknownFlowCellType, UnknownFlowCellValues
 } from "./flow-cells.ts";
 
-export type FlowCellIdMapping<T extends FlowCellType, I = InstrumentType> = {
+export interface FlowCellIdMapping<T extends FlowCellType, I = InstrumentType> {
     pattern: RegExp;
     flowCell: T;
     instruments: I[];
-};
+}
 
 export const IlluminaFlowCellIdMappings: FlowCellIdMapping<IlluminaFlowCellType, IlluminaInstrumentType>[] = [
     { pattern: /^(?:BNT|BRB|BPC|BPG|BPA|BPL|BTR)[A-Z0-9]{5}-[A-Z0-9]{4}$/, flowCell: IlluminaFlowCellValues.standardOutput, instruments: [IlluminaInstrumentValues.iSeq] },
