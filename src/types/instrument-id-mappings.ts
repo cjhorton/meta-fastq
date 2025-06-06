@@ -30,14 +30,14 @@ export const IlluminaInstrumentIdMappings: InstrumentIdMapping<IlluminaInstrumen
     {pattern: /HWI-C\d+/, instruments: [IlluminaInstrumentValues.hiSeq1500]},
     {pattern: /SN\d+/, instruments: [IlluminaInstrumentValues.hiSeq2000, IlluminaInstrumentValues.hiSeq2500]},
     {pattern: /HWUSI/, instruments: [IlluminaInstrumentValues.genomeAnalyzerIIx]},
-    {pattern: /.*/, instruments: [IlluminaInstrumentValues.unknownIllumina]}
+    {pattern: /^.*$/, instruments: [IlluminaInstrumentValues.unknownIllumina]}
 ];
 
 export const NanoporeInstrumentIdMappings: InstrumentIdMapping<NanoporeInstrumentType>[] = [
-    {pattern: /.*/, instruments: [NanoporeInstrumentValues.unknownNanopore]}
+    {pattern: /^.*$/, instruments: [NanoporeInstrumentValues.unknownNanopore]}
 ];
 
 export const UnknownInstrumentIdMappings: InstrumentIdMapping<UnknownInstrumentType>[] = [
-    {pattern: /.*/, instruments: [UnknownInstrumentValues.unknown]}
+    {pattern: /^.*$/, instruments: [UnknownInstrumentValues.unknown]}
 ];
 
