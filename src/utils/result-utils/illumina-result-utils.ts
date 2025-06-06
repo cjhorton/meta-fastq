@@ -2,6 +2,7 @@ import { BASES_LINE, type FastqRead, HEADER_LINE } from "../../types/fastq-types
 import { parseIlluminaHeader } from "../../utils/header-utils/illumina-header-utils.ts";
 import type { FastqResult } from "@/types/fastq-result.ts";
 import { determineIlluminaInstrument } from "../instrument-detectors.ts";
+import { determineIlluminaFlowCell } from "../flow-cell-detectors.ts";
 
 export const createIlluminaResult = (file: File, firstRead: FastqRead): FastqResult => {
     const header = parseIlluminaHeader(firstRead[HEADER_LINE]);
@@ -16,6 +17,7 @@ export const createIlluminaResult = (file: File, firstRead: FastqRead): FastqRes
     }
 
     const instruments = determineIlluminaInstrument(header.instrument);
+    const flowCellType = determineIlluminaFlowCell(header.flowcellId);
 
     return {
         file,
@@ -24,6 +26,7 @@ export const createIlluminaResult = (file: File, firstRead: FastqRead): FastqRes
         instrumentId: header.instrument,
         instrumentTypes: instruments,
         flowcellId: header.flowcellId,
+        flowCellType: flowCellType,
         runNumber: header.runNumber,
         cycles: firstRead[BASES_LINE].length,
         indexes: header.index,
