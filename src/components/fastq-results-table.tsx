@@ -16,6 +16,7 @@ export const FastqResultsTable = ({results}: { results: FastqResult[] }) => {
                     <Table.ColumnHeader>Instrument Id</Table.ColumnHeader>
                     <Table.ColumnHeader>Instrument Type</Table.ColumnHeader>
                     <Table.ColumnHeader>Flow Cell Id</Table.ColumnHeader>
+                    <Table.ColumnHeader>Flow Cell Type</Table.ColumnHeader>
                     <Table.ColumnHeader>Read</Table.ColumnHeader>
                     <Table.ColumnHeader>Cycles</Table.ColumnHeader>
                     <Table.ColumnHeader>Indexes/Sample #</Table.ColumnHeader>
@@ -23,7 +24,8 @@ export const FastqResultsTable = ({results}: { results: FastqResult[] }) => {
             </Table.Header>
             <Table.Body>
                 {results.map((result) => {
-                    const {file, status, error, platform, instrumentId, instrumentTypes, flowcellId, readNumber,cycles, indexes} = result;
+                    const {file, status, error, platform, instrumentId, instrumentTypes, flowcellId,
+                        flowCellType, readNumber,cycles, indexes} = result;
                     return (
                         <Table.Row key={file.name}>
                             <Table.Cell>{file.name}</Table.Cell>
@@ -34,6 +36,7 @@ export const FastqResultsTable = ({results}: { results: FastqResult[] }) => {
                             <Table.Cell>{valueOrDefault(instrumentId)}</Table.Cell>
                             <Table.Cell>{arrayOrDefault(instrumentTypes)}</Table.Cell>
                             <Table.Cell>{valueOrDefault(flowcellId)}</Table.Cell>
+                            <Table.Cell>{valueOrDefault(flowCellType)}</Table.Cell>
                             <Table.Cell>{valueOrDefault(readNumber)}</Table.Cell>
                             <Table.Cell>{valueOrDefault(cycles)}</Table.Cell>
                             <Table.Cell>{valueOrDefault(indexes)}</Table.Cell>
