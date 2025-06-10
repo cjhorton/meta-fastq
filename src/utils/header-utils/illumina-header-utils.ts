@@ -5,7 +5,7 @@ type IlluminaHeaderGroups = Stringify<Omit<IlluminaHeader, 'umi'>> & {
     umi?: string;
 };
 
-export const ILLUMINA_HEADER_REGEX = /^@(?<instrument>\w+):(?<runNumber>\d+):(?<flowcellId>[A-Za-z0-9-]+):(?<lane>\d+):(?<tile>\d+):(?<xPos>\d+):(?<yPos>\d+)(?::(?<umi>[ATGCN]+\+[ATGCN]+))?\s(?<read>[12]):(?<isFiltered>[YN]):(?<control>\d+):(?<index>([ATGCN]+(?:\+[ATGCN]+)?)|\d+)$/;
+export const ILLUMINA_HEADER_REGEX = /^@(?<instrument>\w+):(?<runNumber>\d+):(?<flowCellId>[A-Za-z0-9-]+):(?<lane>\d+):(?<tile>\d+):(?<xPos>\d+):(?<yPos>\d+)(?::(?<umi>[ATGCN]+\+[ATGCN]+))?\s(?<read>[12]):(?<isFiltered>[YN]):(?<control>\d+):(?<index>([ATGCN]+(?:\+[ATGCN]+)?)|\d+)$/;
 
 export const isIlluminaPlatform = (header: string): boolean => {
     return ILLUMINA_HEADER_REGEX.test(header);
