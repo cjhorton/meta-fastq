@@ -21,7 +21,7 @@ export const parseIlluminaHeader = (header: string): IlluminaHeader | null => {
     return {
         instrument: groups.instrument,
         runNumber: Number(groups.runNumber),
-        flowcellId: groups.flowcellId,
+        flowCellId: groups.flowCellId,
         lane: Number(groups.lane),
         tile: Number(groups.tile),
         xPos: Number(groups.xPos),

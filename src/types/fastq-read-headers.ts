@@ -1,7 +1,7 @@
 export interface IlluminaHeader {
     instrument: string;
     runNumber: number;
-    flowcellId: string;
+    flowCellId: string;
     lane: number;
     tile: number;
     xPos: number;

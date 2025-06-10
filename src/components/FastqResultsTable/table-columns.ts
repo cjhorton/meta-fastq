@@ -58,10 +58,10 @@ export const tableColumns: TableColumns[] = [
         accessor: (row) => arrayOrDefault(row.instrumentTypes)
     },
     {
-        key: 'flowcellId',
+        key: 'flowCellId',
         label: 'Flow Cell Id',
         tooltipText: 'The id of the sequencing flow cell. Defaults to "-" if not available.',
-        accessor: (row) => valueOrDefault(row.flowcellId)
+        accessor: (row) => valueOrDefault(row.flowCellId)
     },
     {
         key: 'flowCellType',

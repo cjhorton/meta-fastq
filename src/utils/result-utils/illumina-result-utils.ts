@@ -17,7 +17,7 @@ export const createIlluminaResult = (file: File, firstRead: FastqRead): FastqRes
     }
 
     const instruments = determineIlluminaInstrument(header.instrument);
-    const flowCellType = determineIlluminaFlowCell(header.flowcellId);
+    const flowCellType = determineIlluminaFlowCell(header.flowCellId);
 
     return {
         file,
@@ -25,7 +25,7 @@ export const createIlluminaResult = (file: File, firstRead: FastqRead): FastqRes
         platform: 'Illumina',
         instrumentId: header.instrument,
         instrumentTypes: instruments,
-        flowcellId: header.flowcellId,
+        flowCellId: header.flowCellId,
         flowCellType: flowCellType,
         runNumber: header.runNumber,
         cycles: firstRead[BASES_LINE].length,

@@ -16,7 +16,7 @@ export interface FastqResult {
     platform: PlatformType;
     instrumentId?: string,
     instrumentTypes?: InstrumentType[],
-    flowcellId?: string,
+    flowCellId?: string,
     flowCellType?: FlowCellType,
     error?: string;
     runNumber?: number,
