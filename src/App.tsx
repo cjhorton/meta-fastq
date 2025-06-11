@@ -9,7 +9,7 @@ import { type Action, type EnabledActions, getEnabledActions, type SaveMethod } 
 import type { Status as AppStatus } from "@/types/status.ts";
 import { FastqProcessor } from "@/components/fastq-processor.tsx";
 import type { FastqProcessingUpdate } from "@/types/fastq-processing-update.ts";
-import { FastqResultsTable } from "@/components/FastqResultsTable/FastqResultsTable.tsx";
+import { FastqResultsTable } from "@/components/FastqResultsTable.tsx";
 
 function App() {
     const [status, setStatus] = useState<AppStatus>('Idle')

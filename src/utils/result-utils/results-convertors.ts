@@ -1,5 +1,5 @@
 import type { FastqResult } from "@/types/fastq-result.ts";
-import { tableColumns } from "@/components/FastqResultsTable/table-columns.ts";
+import { tableColumns } from "@/types/table-columns.ts";
 
 const convertToDelimitedText = (
     results: FastqResult[],

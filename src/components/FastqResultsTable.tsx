@@ -1,7 +1,7 @@
 import { Table } from "@chakra-ui/react"
 import type { FastqResult } from "@/types/fastq-result.ts";
-import { Tooltip } from "@/components/ui/tooltip";
-import { tableColumns } from "./table-columns.ts";
+import { Tooltip } from "@/components/ui/tooltip.tsx";
+import { tableColumns } from "../types/table-columns.ts";
 
 export const FastqResultsTable = ({results}: { results: FastqResult[] }) => {
     return (
