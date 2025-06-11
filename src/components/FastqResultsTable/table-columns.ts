@@ -5,49 +5,56 @@ import { arrayOrDefault, valueOrDefault } from "@/utils/ui-utils.ts";
 
 export type TableKeys = Exclude<keyof FastqResult, 'file'> | 'name' | 'size';
 
-export interface TableColumns {
+export interface TableColumn {
     key: TableKeys;
     label: string;
     tooltipText?: string;
     accessor: (row: FastqResult) => React.ReactNode;
+    textAccessor: (row: FastqResult) => string;
 }
 
-export const tableColumns: TableColumns[] = [
+export const tableColumns: TableColumn[] = [
     {
         key: 'name',
         label: 'Name',
         tooltipText: 'Name of the Fastq File',
-        accessor: (row) => row.file.name
+        accessor: (row) => row.file.name,
+        textAccessor: (row) => row.file.name
     },
     {
         key: 'status',
         label: 'Status',
         tooltipText: 'Processing status - Pending, Done, Error',
-        accessor: (row) => row.status
+        accessor: (row) => row.status,
+        textAccessor: (row) => row.status
     },
     {
         key: 'error',
         label: 'Error Msg',
         tooltipText: 'Error Message, if applicable, else "-"',
-        accessor: (row) => valueOrDefault(row.error)
+        accessor: (row) => valueOrDefault(row.error),
+        textAccessor: (row) => valueOrDefault(row.error)
     },
     {
         key: 'size',
         label: 'Size',
         tooltipText: 'Size of the the Fastq file on disk',
-        accessor: (row) => formatFileSize(row.file.size)
+        accessor: (row) => formatFileSize(row.file.size),
+        textAccessor: (row) => formatFileSize(row.file.size),
     },
     {
         key: 'platform',
         label: 'Platform',
         tooltipText: 'The sequencing platform used to generate the Fastq - Illumina, Oxford Nanopore, or Unknown',
-        accessor: (row) => valueOrDefault(row.platform)
+        accessor: (row) => valueOrDefault(row.platform),
+        textAccessor: (row) => valueOrDefault(row.platform)
     },
     {
         key: 'instrumentId',
         label: 'Instrument Id',
         tooltipText: 'The id of the sequencing instrument.  Defaults to "-" if not available.',
-        accessor: (row) => valueOrDefault(row.instrumentId)
+        accessor: (row) => valueOrDefault(row.instrumentId),
+        textAccessor: (row) => valueOrDefault(row.instrumentId),
     },
     {
         key: 'instrumentTypes',
@@ -55,44 +62,51 @@ export const tableColumns: TableColumns[] = [
         tooltipText: 'Type of instrument calculated from the id.  This is based on known instrument default id values.' +
             '  If the id was changed by the lab, then it will likely be "unknown".' +
             '  Defaults to "-" if not available.',
-        accessor: (row) => arrayOrDefault(row.instrumentTypes)
+        accessor: (row) => arrayOrDefault(row.instrumentTypes),
+        textAccessor: (row) => arrayOrDefault(row.instrumentTypes)
     },
     {
         key: 'flowCellId',
         label: 'Flow Cell Id',
         tooltipText: 'The id of the sequencing flow cell. Defaults to "-" if not available.',
-        accessor: (row) => valueOrDefault(row.flowCellId)
+        accessor: (row) => valueOrDefault(row.flowCellId),
+        textAccessor: (row) => valueOrDefault(row.flowCellId)
     },
     {
         key: 'flowCellType',
         label: 'Flow Cell Type',
         tooltipText: 'Calculated flow cell type based on the flow cell id.  This is based on known flow cell id values.' +
             ' Defaults to "-" if not available.',
-        accessor: (row) => valueOrDefault(row.flowCellType)
+        accessor: (row) => valueOrDefault(row.flowCellType),
+        textAccessor: (row) => valueOrDefault(row.flowCellType)
     },
     {
         key: 'runNumber',
         label: 'Run Number',
         tooltipText: 'Run number  of the sequencing instrument.  Defaults to "-" if not available.',
-        accessor: (row) => valueOrDefault(row.runNumber)
+        accessor: (row) => valueOrDefault(row.runNumber),
+        textAccessor: (row) => valueOrDefault(row.runNumber)
     },
     {
         key: 'cycles',
         label: 'Cycles',
         tooltipText: 'Number of cycles.  Determined from the number of bases in the first read.  Defaults to "-" if not available.',
-        accessor: (row) => valueOrDefault(row.cycles)
+        accessor: (row) => valueOrDefault(row.cycles),
+        textAccessor: (row) => valueOrDefault(row.cycles)
     },
     {
         key: 'indexes',
         label: 'Indexes/Sample #',
         tooltipText: 'Indexes or Sample Number.  Indexes can be multiple values separated by a "+".  ' +
             'Indexes must have been added to the fastq headers. Defaults to "-" if not available.',
-        accessor: (row) => valueOrDefault(row.indexes)
+        accessor: (row) => valueOrDefault(row.indexes),
+        textAccessor: (row) => valueOrDefault(row.indexes)
     },
     {
         key: 'readNumber',
         label: 'Read',
         tooltipText: 'Read Number (1 or 2).  Defaults to "-" if not available.',
-        accessor: (row) => valueOrDefault(row.readNumber)
+        accessor: (row) => valueOrDefault(row.readNumber),
+        textAccessor: (row) => valueOrDefault(row.readNumber)
     },
 ];
