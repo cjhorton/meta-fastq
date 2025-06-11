@@ -1,5 +1,9 @@
-import { Button, Group } from "@chakra-ui/react";
+import { Button, Group, Menu, Portal } from "@chakra-ui/react";
 import type { Action, EnabledActions } from "@/types/action";
+import { LuCopy, LuFile } from "react-icons/lu";
+
+const SAVE_FILE = 'save-file';
+const SAVE_CLIPBOARD = 'save-clipboard';
 
 interface Props {
     enabledActions: EnabledActions;
@@ -25,14 +29,33 @@ export function ActionBar({enabledActions, onActionSelected}: Props) {
                 }}>
                 Process Files
             </Button>
-            <Button
-                colorPalette="purple"
-                disabled={!enabledActions.save}
-                onClick={() => {
-                    onActionSelected({type: 'Save'});
+            <Menu.Root
+                onSelect={(details) => {
+                    const method = details.value === SAVE_FILE ? 'file' : 'clipboard';
+                    onActionSelected({type: 'Save', method});
                 }}>
-                Save Results
-            </Button>
+                <Menu.Trigger asChild>
+                    <Button
+                        colorPalette="purple"
+                        disabled={!enabledActions.save}>
+                        Save Results
+                    </Button>
+                </Menu.Trigger>
+                <Portal>
+                    <Menu.Positioner>
+                        <Menu.Content>
+                            <Menu.Item value={SAVE_FILE}>
+                                <LuFile/>
+                                Tab-delimited File
+                            </Menu.Item>
+                            <Menu.Item value={SAVE_CLIPBOARD}>
+                                <LuCopy/>
+                                Copy to Clipboard
+                            </Menu.Item>
+                        </Menu.Content>
+                    </Menu.Positioner>
+                </Portal>
+            </Menu.Root>
             <Button
                 colorPalette="orange"
                 disabled={!enabledActions.reset}

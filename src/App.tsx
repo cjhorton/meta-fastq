@@ -5,7 +5,7 @@ import { FastqUploader, type FastqUploaderHandle } from "@/components/fastq-uplo
 import type { FileRejection } from "@/types/file-upload-types";
 import { RejectedList } from "@/components/rejected-list.tsx";
 import { ActionBar } from "@/components/action-bar.tsx";
-import { type Action, type EnabledActions, getEnabledActions } from "@/types/action.ts";
+import { type Action, type EnabledActions, getEnabledActions, type SaveMethod } from "@/types/action.ts";
 import type { Status as AppStatus } from "@/types/status.ts";
 import { FastqProcessor } from "@/components/fastq-processor.tsx";
 import type { FastqProcessingUpdate } from "@/types/fastq-processing-update.ts";
@@ -58,9 +58,9 @@ function App() {
         updateStatus('Idle');
     };
 
-    const handleSaveAction = () => {
+    const handleSaveAction = (method: SaveMethod) => {
         //TODO: save results
-        console.log('save results');
+        console.log('save results - ', method);
     };
 
     const handleUserAction = (action: Action) => {
@@ -75,26 +75,33 @@ function App() {
                 handleResetAction();
                 break;
             case 'Save':
-                handleSaveAction();
+                handleSaveAction(action.method);
                 break;
         }
     };
 
-    const updateStatus = (newStatus: AppStatus) => {
-        if (newStatus !== status) {
-            setStatus(newStatus);
-            updateEnabledActions(newStatus);
-        }
-    };
-
-    const updateEnabledActions = (status: AppStatus) => {
+    const updateEnabledActions = useCallback((status: AppStatus) => {
         const enabledActions = getEnabledActions(status);
         setEnabledActions(enabledActions);
-    };
+    }, []);
+
+    const updateStatus = useCallback((newStatus: AppStatus) => {
+        console.log('status update', newStatus);
+        setStatus((current) => {
+            if (newStatus !== current) {
+                updateEnabledActions(newStatus);
+                return newStatus;
+            }
+            return current;
+        });
+    }, [updateEnabledActions]);
 
     const handleProcessingUpdate = useCallback((update: FastqProcessingUpdate) => {
         setProcessingUpdate(update);
-    }, []);
+        if (update.status === 'complete') {
+            updateStatus('Complete');
+        }
+    }, [updateStatus]);
 
     return (
         <Stack align="flex-start" w="full">

@@ -1,10 +1,12 @@
 import type { Status } from "./status";
 
+export type SaveMethod = 'file' | 'clipboard';
+
 export type Action =
     | { type: 'Clear' }
     | { type: 'Run' }
     | { type: 'Reset' }
-    | { type: 'Save', method?: 'file' | 'clipboard' }
+    | { type: 'Save', method: SaveMethod }
 
 export interface EnabledActions {
     clear: boolean;
