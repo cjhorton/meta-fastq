@@ -13,7 +13,7 @@ export function ActionBar({enabledActions, onActionSelected}: Props) {
                 colorPalette="blue"
                 disabled={!enabledActions.clear}
                 onClick={() => {
-                    onActionSelected('Clear');
+                    onActionSelected({type: 'Clear'});
                 }}>
                 Clear Files
             </Button>
@@ -21,7 +21,7 @@ export function ActionBar({enabledActions, onActionSelected}: Props) {
                 colorPalette="green"
                 disabled={!enabledActions.run}
                 onClick={() => {
-                    onActionSelected('Run');
+                    onActionSelected({type: 'Run'});
                 }}>
                 Process Files
             </Button>
@@ -29,7 +29,7 @@ export function ActionBar({enabledActions, onActionSelected}: Props) {
                 colorPalette="purple"
                 disabled={!enabledActions.save}
                 onClick={() => {
-                    onActionSelected('Save');
+                    onActionSelected({type: 'Save'});
                 }}>
                 Save Results
             </Button>
@@ -37,7 +37,7 @@ export function ActionBar({enabledActions, onActionSelected}: Props) {
                 colorPalette="orange"
                 disabled={!enabledActions.reset}
                 onClick={() => {
-                    onActionSelected('Reset');
+                    onActionSelected({type: 'Reset'});
                 }}>
                 Reset
             </Button>

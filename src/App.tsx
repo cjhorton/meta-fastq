@@ -64,7 +64,7 @@ function App() {
     };
 
     const handleUserAction = (action: Action) => {
-        switch (action) {
+        switch (action.type) {
             case 'Run':
                 handleRunAction();
                 break;
