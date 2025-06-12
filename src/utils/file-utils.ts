@@ -68,3 +68,12 @@ export function formatFileSize(size: number): string {
 
     return `${String(size)} B`;
 }
+
+export const generateFilename = (extension: 'tsv' | 'csv'): string => {
+    const now = new Date();
+    const datePart = now.toISOString().slice(0, 10).replace(/-/g, '');
+    const timePart = now.toTimeString().slice(0, 8).replace(/:/g, '');
+    const shortId = crypto.randomUUID().split('-')[0];
+
+    return `results-${datePart}-${timePart}-${shortId}.${extension}`;
+};
