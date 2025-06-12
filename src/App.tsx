@@ -10,6 +10,10 @@ import type { Status as AppStatus } from "@/types/status.ts";
 import { FastqProcessor } from "@/components/fastq-processor.tsx";
 import type { FastqProcessingUpdate } from "@/types/fastq-processing-update.ts";
 import { FastqResultsTable } from "@/components/FastqResultsTable.tsx";
+import { convertResultsToCsv, convertResultsToTsv } from "@/utils/result-utils/results-convertors.ts";
+import { copyResultsToClipboard, saveResultsCsvFile, saveResultsTsvFile } from "@/utils/result-utils/results-saver.ts";
+import { generateFilename } from "@/utils/file-utils.ts";
+import type { FastqResult } from "@/types/fastq-result.ts";
 
 function App() {
     const [status, setStatus] = useState<AppStatus>('Idle')
@@ -58,9 +62,43 @@ function App() {
         updateStatus('Idle');
     };
 
+    const isTsvFormat = (method: SaveMethod): boolean => {
+        return method === 'tsv-file' || method === 'clipboard';
+    }
+
+    const isFileMethod = (method: SaveMethod): boolean => {
+        return method === 'tsv-file' || method === 'csv-file';
+    }
+
+    const formatResults = (method: SaveMethod, results: FastqResult[]): string => {
+        return isTsvFormat(method) ? convertResultsToTsv(results) : convertResultsToCsv(results);
+    }
+
+    const saveToFile = (method: SaveMethod, content: string) => {
+        const extension = isTsvFormat(method) ? 'tsv' : 'csv';
+        const filename = generateFilename(extension);
+        if (extension === 'tsv') {
+            saveResultsTsvFile(filename, content);
+        } else {
+            saveResultsCsvFile(filename, content);
+        }
+    }
+
     const handleSaveAction = (method: SaveMethod) => {
-        //TODO: save results
-        console.log('save results - ', method);
+        const resultsString = formatResults(method, processingUpdate.results);
+
+        //TODO: Add toasts for visual feedback
+        if (isFileMethod(method)) {
+            saveToFile(method, resultsString);
+        } else {
+            copyResultsToClipboard(resultsString)
+                .then(() => {
+                    console.log('results copied to clipboard')
+                })
+                .catch(() => {
+                    console.error('failed to copy results to clipboard')
+                });
+        }
     };
 
     const handleUserAction = (action: Action) => {
