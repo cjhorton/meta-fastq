@@ -1,6 +1,6 @@
 import type { Status } from "./status";
 
-export type SaveMethod = 'file' | 'clipboard';
+export type SaveMethod = 'tsv-file' | 'csv-file' | 'clipboard';
 
 export type Action =
     | { type: 'Clear' }

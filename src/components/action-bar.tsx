@@ -1,9 +1,10 @@
 import { Button, Group, Menu, Portal } from "@chakra-ui/react";
-import type { Action, EnabledActions } from "@/types/action";
+import type { Action, EnabledActions, SaveMethod } from "@/types/action";
 import { LuCopy, LuFile } from "react-icons/lu";
 
-const SAVE_FILE = 'save-file';
-const SAVE_CLIPBOARD = 'save-clipboard';
+const SAVE_TSV_FILE: SaveMethod = 'tsv-file';
+const SAVE_CSV_FILE: SaveMethod = 'csv-file';
+const SAVE_CLIPBOARD: SaveMethod = 'clipboard';
 
 interface Props {
     enabledActions: EnabledActions;
@@ -31,8 +32,7 @@ export function ActionBar({enabledActions, onActionSelected}: Props) {
             </Button>
             <Menu.Root
                 onSelect={(details) => {
-                    const method = details.value === SAVE_FILE ? 'file' : 'clipboard';
-                    onActionSelected({type: 'Save', method});
+                    onActionSelected({type: 'Save', method: details.value as SaveMethod});
                 }}>
                 <Menu.Trigger asChild>
                     <Button
@@ -44,13 +44,17 @@ export function ActionBar({enabledActions, onActionSelected}: Props) {
                 <Portal>
                     <Menu.Positioner>
                         <Menu.Content>
-                            <Menu.Item value={SAVE_FILE}>
+                            <Menu.Item value={SAVE_TSV_FILE}>
                                 <LuFile/>
-                                Tab-delimited File
+                                TSV File
+                            </Menu.Item>
+                            <Menu.Item value={SAVE_CSV_FILE}>
+                                <LuFile/>
+                                CSV File
                             </Menu.Item>
                             <Menu.Item value={SAVE_CLIPBOARD}>
                                 <LuCopy/>
-                                Copy to Clipboard
+                                Clipboard
                             </Menu.Item>
                         </Menu.Content>
                     </Menu.Positioner>
