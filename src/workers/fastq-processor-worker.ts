@@ -7,6 +7,7 @@ import { isValidFastqRead } from "../utils/fastq-validator.ts";
 import { determinePlatform } from "../utils/header-utils/fastq-platform-utils.ts";
 import { createIlluminaResult } from "../utils/result-utils/illumina-result-utils.ts";
 import { createUnknownResult } from "../utils/result-utils/unknown-result.ts";
+import { createNanoporeResult } from "../utils/result-utils/nanopore-result-utils.ts";
 
 self.onmessage = async (e: MessageEvent<MessageToWorker>) => {
     const {file} = e.data;
@@ -80,6 +81,8 @@ function processFastqRead(file: File, firstRead: FastqRead): FastqResult {
     switch (platform) {
         case 'Illumina':
             return createIlluminaResult(file, firstRead);
+        case "Nanopore":
+            return createNanoporeResult(file, firstRead);
         default:
             return createUnknownResult(file, 'Done');
     }
