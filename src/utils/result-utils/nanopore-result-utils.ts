@@ -1,4 +1,4 @@
-import { type FastqRead, HEADER_LINE } from "@/types/fastq-types.ts";
+import { type FastqRead, HEADER_LINE } from "../../types/fastq-types.ts";
 import { parseNanoporeHeader } from "../../utils/header-utils/nanopore-header-utils.ts";
 import type { FastqResult } from "@/types/fastq-result.ts";
 import { type InstrumentType, type NanoporeInstrumentType, NanoporeInstrumentValues, } from "@/types/instruments.ts";
