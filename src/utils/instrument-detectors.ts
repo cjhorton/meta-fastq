@@ -1,19 +1,13 @@
 import {
-    type IlluminaInstrumentType, type InstrumentType,
-    type NanoporeInstrumentType,
-    type UnknownInstrumentType, UnknownInstrumentValues
+    type IlluminaInstrumentType,
+    type InstrumentType,
+    type UnknownInstrumentType,
+    UnknownInstrumentValues
 } from "../types/instruments.ts";
-import {
-    IlluminaInstrumentIdMappings, type InstrumentIdMapping,
-    NanoporeInstrumentIdMappings
-} from "../types/instrument-id-mappings.ts";
+import { IlluminaInstrumentIdMappings, type InstrumentIdMapping, } from "../types/instrument-id-mappings.ts";
 
 export function determineIlluminaInstrument(instrumentId: string): IlluminaInstrumentType[] {
     return determineInstrument<IlluminaInstrumentType>(instrumentId, IlluminaInstrumentIdMappings);
-}
-
-export function determineNanoporeInstrument(instrumentId: string): NanoporeInstrumentType[] {
-    return determineInstrument<NanoporeInstrumentType>(instrumentId, NanoporeInstrumentIdMappings);
 }
 
 export function getUnknownInstrument(instrumentId: string): UnknownInstrumentType[] {
