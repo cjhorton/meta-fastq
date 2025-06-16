@@ -44,10 +44,9 @@ export const IlluminaFlowCellIdMappings: FlowCellIdMapping<IlluminaFlowCellType,
 ];
 
 export const NanoporeFlowCellIdMappings: FlowCellIdMapping<NanoporeFlowCellType, NanoporeInstrumentType>[] = [
-    { pattern: /^FAA[A-Z0-9]+$/, flowCell: NanoporeFlowCellValues.mk1d, instruments: [NanoporeInstrumentValues.minIon] },
+    { pattern: /^FAZ[A-Z0-9]+$/, flowCell: NanoporeFlowCellValues.mk1d, instruments: [NanoporeInstrumentValues.minIon] },
     { pattern: /^PAA[A-Z0-9]+$/, flowCell: NanoporeFlowCellValues.promethIon, instruments: [NanoporeInstrumentValues.promethIon] },
-    { pattern: /^FAS[A-Z0-9]+$/, flowCell: NanoporeFlowCellValues.flongle, instruments: [NanoporeInstrumentValues.minIon, NanoporeInstrumentValues.gridIon] },
-    { pattern: /^.*$/, flowCell: NanoporeFlowCellValues.unknown, instruments: [NanoporeInstrumentValues.unknownNanopore] },
+    { pattern: /^FAS[A-Z0-9]+$/, flowCell: NanoporeFlowCellValues.flongle, instruments: [NanoporeInstrumentValues.minIon, NanoporeInstrumentValues.gridIon] }
 ];
 
 export const UnknownFlowCellIdMappings: FlowCellIdMapping<UnknownFlowCellType, UnknownInstrumentType>[] = [
