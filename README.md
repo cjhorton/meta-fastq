@@ -1,54 +1,41 @@
-# React + TypeScript + Vite
+# Meta Fastq
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Meta Fastq is an in-browser application for quickly viewing metadata from FASTQ files. It is designed to be accessible to laboratory personnel without requiring command-line tools or programming experience.
 
-Currently, two official plugins are available:
+### What It Does
+Meta Fastq allows users to upload up to 96 FASTQ files (compressed or uncompressed) and view summarized metadata in a user-friendly table. It is built to handle very large FASTQ files efficiently by streaming the contents instead of loading them entirely into memory.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Key Features
+- Supports compressed (.gz) and uncompressed FASTQ files
+- Streams files using modern JavaScript streams API for memory efficiency
+- Displays parsed metadata in an interactive table
+- Export results as CSV or TSV, or copy to clipboard
+- No server, no installation – 100% in-browser
+- Tailored for laboratory users, not programmers
 
-## Expanding the ESLint configuration
+### Tech Stack
+- React
+- Vite
+- TypeScript
+- Chakra UI
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Target Audience
+This tool was built for laboratory personnel who may not have the ability or familiarity to use traditional command-line tools like Bash. Meta Fastq brings the power of quick file introspection to the browser, with zero setup and minimal technical know-how.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### Usage
+- Open the app in your browser.
+- Upload up to 96 FASTQ files (gzip-compressed or plain text).
+- View metadata such as instrument Id, instrument type, run number, and more.
+- Export the results to CSV or TSV, or copy the table to your clipboard for use in other applications.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Limitations
+- Only processes up to 96 files at once.
+- This tool does not perform quality trimming, alignment, or any downstream analysis—just metadata extraction.
+- Provides the most information for Illumina platform generated Fastq data.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Why This Exists
+While parsing FASTQ files is trivial for those comfortable with Bash or Python, many lab users don't have access to those environments or the skills to use them. Meta Fastq fills this gap with a modern, browser-based solution.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+### References
+- Instrument and flow cell metadata was derived from the community discussion on BioStars: [https://www.biostars.org/p/198143/](https://www.biostars.org/p/198143/)
+- Regular expression patterns for flow cell ID recognition were heavily borrowed from: [https://github.com/nickp60/fcid](https://github.com/nickp60/fcid)
