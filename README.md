@@ -2,6 +2,10 @@
 
 Meta Fastq is an in-browser application for quickly viewing metadata from FASTQ files. It is designed to be accessible to laboratory personnel without requiring command-line tools or programming experience.
 
+### GitHub Pages Site
+
+Visit its GitHub Pages site to check it out: [Meta Fastq](https://cjhorton.github.io/meta-fastq/)
+
 ### What It Does
 Meta Fastq allows users to upload up to 96 FASTQ files (compressed or uncompressed) and view summarized metadata in a user-friendly table. It is built to handle very large FASTQ files efficiently by streaming the contents instead of loading them entirely into memory.
 
