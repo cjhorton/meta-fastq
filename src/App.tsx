@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from "react";
-import { Code, Show, Stack } from "@chakra-ui/react";
+import { Code, HStack, Show, Stack } from "@chakra-ui/react";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import { FastqUploader, type FastqUploaderHandle } from "@/components/fastq-uploader.tsx";
 import type { FileRejection } from "@/types/file-upload-types";
@@ -14,6 +14,7 @@ import { convertResultsToCsv, convertResultsToTsv } from "@/utils/result-utils/r
 import { copyResultsToClipboard, saveResultsCsvFile, saveResultsTsvFile } from "@/utils/result-utils/results-saver.ts";
 import { generateFilename } from "@/utils/file-utils.ts";
 import type { FastqResult } from "@/types/fastq-result.ts";
+import { GithubLink } from "@/components/ui/github-link.tsx";
 
 function App() {
     const [status, setStatus] = useState<AppStatus>('Idle')
@@ -143,7 +144,10 @@ function App() {
 
     return (
         <Stack align="flex-start" w="full">
-            <ColorModeButton/>
+            <HStack>
+                <ColorModeButton/>
+                <GithubLink/>
+            </HStack>
             <Code colorPalette="green"># Files to Process: {acceptedFiles.length}</Code>
             <Show when={rejectedFiles.length > 0}>
                 <RejectedList rejection={rejectedFiles}/>
