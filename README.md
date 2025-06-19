@@ -1,6 +1,8 @@
-# Meta Fastq
+<p align="center">
+  <img src="./src/assets/logo.svg" alt="Meta Fastq logo" height="60"/>
+</p>
 
-Meta Fastq is an in-browser application for quickly viewing metadata from FASTQ files. It is designed to be accessible to laboratory personnel without requiring command-line tools or programming experience.
+An in-browser application for quickly viewing metadata from FASTQ files. It is designed to be accessible to laboratory personnel without requiring command-line tools or programming experience.
 
 ### GitHub Pages Site
 
