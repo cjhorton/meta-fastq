@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from "react";
-import { Code, HStack, Show, Stack } from "@chakra-ui/react";
+import { Code, HStack, Image, Show, Stack } from "@chakra-ui/react";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import { FastqUploader, type FastqUploaderHandle } from "@/components/fastq-uploader.tsx";
 import type { FileRejection } from "@/types/file-upload-types";
@@ -15,6 +15,7 @@ import { copyResultsToClipboard, saveResultsCsvFile, saveResultsTsvFile } from "
 import { generateFilename } from "@/utils/file-utils.ts";
 import type { FastqResult } from "@/types/fastq-result.ts";
 import { GithubLink } from "@/components/ui/github-link.tsx";
+import logo from './assets/logo.svg';
 
 function App() {
     const [status, setStatus] = useState<AppStatus>('Idle')
@@ -143,16 +144,20 @@ function App() {
     }, [updateStatus]);
 
     return (
-        <Stack align="flex-start" w="full">
-            <HStack>
-                <ColorModeButton/>
-                <GithubLink/>
-            </HStack>
+        <Stack align="center" w="full" px={4} py={2}>
+            <Image
+                src={logo}
+                alt="Meta Fastq logo"
+                height="60px"/>
             <Code colorPalette="green"># Files to Process: {acceptedFiles.length}</Code>
             <Show when={rejectedFiles.length > 0}>
                 <RejectedList rejection={rejectedFiles}/>
             </Show>
-            <ActionBar enabledActions={enabledActions} onActionSelected={handleUserAction}></ActionBar>
+            <HStack>
+                <ActionBar enabledActions={enabledActions} onActionSelected={handleUserAction}></ActionBar>
+                <ColorModeButton/>
+                <GithubLink/>
+            </HStack>
             <FastqUploader
                 ref={fastqUploadRef}
                 showUpload={status === 'Idle' || status === 'Pending'}
